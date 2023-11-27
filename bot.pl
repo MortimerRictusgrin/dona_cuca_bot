@@ -37,8 +37,6 @@ my $bot = Bot::IRC->new(
 # Query youtube to get video title
 sub youtube_query {
     my $url = shift;
-    # my $server = shift;
-    # my $target = shift;
 
     my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 1 });
     $ua->agent("Emacs/29.1");

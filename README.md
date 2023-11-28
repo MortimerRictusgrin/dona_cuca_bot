@@ -1,3 +1,3 @@
-# dona_cuca
+# Doña Cuca
 
 bot based on Bot::IRC

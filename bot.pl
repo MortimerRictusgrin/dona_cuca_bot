@@ -60,7 +60,7 @@ sub youtube_query {
 $bot->hook(
     {
         to_me => 0,
-        text  => qr/\b(youtu\.be|youtube|[l1][e3]{2}[t7])\b/i,
+	text => qr/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/,
     },
     sub {
         my ( $bot, $in, $m ) = @_;

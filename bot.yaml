@@ -1,0 +1,21 @@
+---
+Bot::IRC::Infobot:
+  politics:
+  - out of topic
+  politis:
+  - bad
+  - out of topic
+  semarus:
+  - 'here '
+Bot::IRC::Karma:
+  police:
+    comments:
+      --:
+      - fuck da police
+      - they're a bunch of pigs
+    karma: -2
+  politics:
+    comments:
+      --:
+      - 'sucks '
+    karma: -1

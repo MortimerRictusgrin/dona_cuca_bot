@@ -1,16 +1,11 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
 
 use strict;
 use warnings;
 
 use Bot::IRC;
-use YouTube::Util;
 
-use HTML::Entities;
-use LWP::UserAgent;
-use JSON;
-
-my $gapi = "API_KEY";
+my $channels = [ "#unitedbymetal" ];
 
 my $bot = Bot::IRC->new(
     spawn   => 2,
@@ -18,56 +13,50 @@ my $bot = Bot::IRC->new(
     connect => {
         server => 'irc.libera.chat',
         port   => '6667',
-        nick   => 'dona_cuca',
+        nick   => 'dona_cuca_bot',
         name   => 'Dona Cuca Bot',
-        join   => [ "#unitedbymetal", "##metal" ],
+        join   => $channels,
         ssl    => 0,
         ipv6   => 0,
     },
     plugins => [
-        ':core',
-	'UriTitle',
+	# 'UriTitle',
+	# 'YouTubeTitle',
+	'Weather',
+	'Infobot',
+	'Functions',
+	'Convert',
+	'Karma',
+	'Math',
+	'History',
 	'Store'
-    ],
-    vars => {
-        store => 'bot.yaml',
-    },
+     ],
+    vars    => { store => 'bot.yaml' },
 );
-
-# Query youtube to get video title
-sub youtube_query {
-    my $url = shift;
-
-    my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 1 });
-    $ua->agent("Emacs/29.1");
-
-    my $res = $ua->get($url);
-    # print "HTTP status: ", $res->code();
-    my $content_json = decode_json($res->content);
-
-    my $output = "";
-
-    #If no video found
-    if ($content_json->{pageInfo}->{totalResults} == 0) {
-        $output = "Video not found.";
-	} 
-    else { #Video found, set the title as output
-        $output = $content_json->{items}[0]->{snippet}->{title};
-    }
-    $output;
-}
 
 $bot->hook(
     {
-        to_me => 0,
-	text => qr/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/,
+        to_me => 1,
+        text  => qr/\b(?<word>police|[l1][e3]{2}[t7])\b/i,
     },
     sub {
         my ( $bot, $in, $m ) = @_;
-	my $id = YouTube::Util::extract_youtube_video_id("$in->{text}");
-	print $id . "\n";
-	my $query = join('',"https://www.googleapis.com/youtube/v3/videos?key=", $gapi,"&part=snippet&id=",$id);
-	$bot->reply("[ YT Title: " . youtube_query($query) . " ]");
+        $bot->reply("the $m->{word}?... Quick, hide the drugs...");
+    },
+    {
+        subs  => [],
+        helps => [],
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 1,
+        text  => qr/\b(?<word>semarus|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("Quick, hide the drugs...");
     },
     {
         subs  => [],

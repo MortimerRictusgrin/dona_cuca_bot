@@ -64,4 +64,19 @@ $bot->hook(
     },
 );
 
+$bot->hook(
+    {
+        to_me => 1,
+        text  => qr/\b(?<word>source code|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("https://github.com/MortimerRictusgrin/dona_cuca_bot");
+    },
+    {
+        subs  => [],
+        helps => [],
+    },
+);
+
 $bot->run();

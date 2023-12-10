@@ -27,7 +27,9 @@ sub init {
 	},
 	sub {
 	    my ( $bot, $in, $m ) = @_;
-	    my ($country) = $in->{full_text} =~ /(\S+$)/;
+            my ($country) = $in->{full_text} =~ /(\S+$)/;
+	    # it will match the exact last word including symbol
+	    # so you can pass something like Guatemala+City to get a more accurate result
 	    my $req = HTTP::Request->new(GET => "https://wttr.in/$country?format='%l:+%C+%t'");
 	    $req->header('Accept' => 'text/html');
 	    chomp(my $res = $ua->request($req));

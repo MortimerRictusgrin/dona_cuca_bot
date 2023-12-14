@@ -41,7 +41,7 @@ $bot->hook(
     },
     sub {
         my ( $bot, $in, $m ) = @_;
-        $bot->reply("the $m->{word}?... Quick, hide the drugs...");
+        $bot->reply("Fuck the $m->{word}?...");
     },
     {
         subs  => [],

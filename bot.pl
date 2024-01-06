@@ -29,6 +29,7 @@ my $bot = Bot::IRC->new(
 	'Karma',
 	'Math',
 	'History',
+	'Seen',
 	'Store'
      ],
     vars    => { store => 'bot.yaml' },
@@ -43,10 +44,6 @@ $bot->hook(
         my ( $bot, $in, $m ) = @_;
         $bot->reply("Fuck the $m->{word}?...");
     },
-    {
-        subs  => [],
-        helps => [],
-    },
 );
 
 $bot->hook(
@@ -57,10 +54,6 @@ $bot->hook(
     sub {
         my ( $bot, $in, $m ) = @_;
         $bot->reply("Quick, hide the drugs...");
-    },
-    {
-        subs  => [],
-        helps => [],
     },
 );
 
@@ -74,8 +67,18 @@ $bot->hook(
         $bot->reply("https://github.com/MortimerRictusgrin/dona_cuca_bot");
     },
     {
-        subs  => [],
-        helps => [],
+        helps => [ source => 'Provides a link to the source code of the bot.'],
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 1,
+        text  => qr/\b(?<word>sing|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("I'm gonna put on an iron shirt, and chase the facist out of Earth");
     },
 );
 

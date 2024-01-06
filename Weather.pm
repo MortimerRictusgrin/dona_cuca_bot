@@ -40,11 +40,9 @@ sub init {
 		$bot->reply("Sorry, I'm unable to get the weather report for $country.");
 	    }
 	},
-	{
-	    subs  => [],
-	    helps => [],
-	},
     );
+
+    $bot->helps( weather => 'Tells the weather for a location in the format: El+Salvador, Guatemala_City, Lisbon... etc, get the weather for a geographical location other than a town or city with: ~Eiffel+Tower' );
 }
 
 1;

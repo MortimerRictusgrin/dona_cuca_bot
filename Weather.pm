@@ -37,7 +37,7 @@ sub init {
 		$bot->reply($res->decoded_content);
 	    }
 	    else {
-		$bot->reply("Sorry, I'm unable to get the weather report for $country.");
+		$bot->reply("Sorry, I'm unable to get the weather report.");
 	    }
 	},
     );

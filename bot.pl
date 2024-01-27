@@ -42,7 +42,18 @@ $bot->hook(
     },
     sub {
         my ( $bot, $in, $m ) = @_;
-        $bot->reply("Fuck the $m->{word}?...");
+        $bot->reply("Fuck the $m->{word}!");
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 0,
+        text  => qr/\b(?<word>cop|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("Fuck the $m->{word}s!");
     },
 );
 
@@ -53,7 +64,7 @@ $bot->hook(
     },
     sub {
         my ( $bot, $in, $m ) = @_;
-        $bot->reply("Quick, hide the drugs...");
+        $bot->reply("Let's get high!");
     },
 );
 
@@ -79,6 +90,39 @@ $bot->hook(
     sub {
         my ( $bot, $in, $m ) = @_;
         $bot->reply("I'm gonna put on an iron shirt, and chase the facist out of Earth");
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 1,
+        text  => qr/\b(?<word>fuck you|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("Fuck you too, $in->{nick}!");
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 1,
+        text  => qr/\b(?<word>i (love|<3) you|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("Fuck you $in->{nick}!");
+    },
+);
+
+$bot->hook(
+    {
+        to_me => 0,
+        text  => qr/\b(?<word>(hello|hola|hi|moi|hei|olá|oi)|[l1][e3]{2}[t7])\b/i,
+    },
+    sub {
+        my ( $bot, $in, $m ) = @_;
+        $bot->reply("$m->{word}!");
     },
 );
 

@@ -51,7 +51,6 @@ sub init {
       sub {
 	  my ( $bot, $in, $m ) = @_;
 	  my $id = YouTube::Util::extract_youtube_video_id("$in->{text}");
-	  print $id . "\n";
 	  my $query = join('',"https://www.googleapis.com/youtube/v3/videos?key=", $gapi,"&part=snippet&id=",$id);
 	  $bot->reply("[ " . youtube_query($query) . " ]");
       },

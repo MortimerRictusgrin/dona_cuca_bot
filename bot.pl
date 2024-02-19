@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -20,8 +20,8 @@ my $bot = Bot::IRC->new(
         ipv6   => 0,
     },
     plugins => [
-	# 'UriTitle',
-	# 'YouTubeTitle',
+	'UriTitle',
+	'YouTubeTitle',
 	'Weather',
 	'Infobot',
 	'Functions',

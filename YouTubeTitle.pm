@@ -36,7 +36,7 @@ sub youtube_query {
         $output = "Video not found.";
 	} 
     else { #Video found, set the title as output
-        $output = $content_json->{items}[0]->{snippet}->{title};
+        $output = "YouTube Title: " . $content_json->{items}[0]->{snippet}->{title} . " Uploader: " . $content_json->{items}[0]->{snippet}->{channelTitle};
     }
     $output;
 }
